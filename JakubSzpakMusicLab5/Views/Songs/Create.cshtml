@@ -1,0 +1,39 @@
+﻿@model Song
+
+@{
+    ViewData["Title"] = "Dodawanie piosenki";
+}
+
+
+@using (Html.BeginForm("Create", "Songs", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        <div class="col-md">
+            @Html.TextBoxFor(model => model.Description)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lyrics)
+        <div class="col-md">
+            @Html.TextAreaFor(model => model.Lyrics, new { style = "min-width: 600px" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Genre.FullName)
+        <div class="col-md">
+            @Html.DropDownListFor(model => model.GenreId, new SelectList(ViewBag.GenreList, "Id", "FullName"))
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Musician.FullName)
+        <div class="col-md">
+            @Html.DropDownListFor(model => model.MusicianId, new SelectList(ViewBag.MusicianList, "Id", "FullName"))
+        </div>
+    </div>
+
+    <input type="submit" value="Dodaj utwór" class="btn btn-dark" />
+}

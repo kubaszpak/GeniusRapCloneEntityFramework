@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Song>
+
+@{
+    ViewData["Title"] = "Lista utworów";
+}
+
+<p>
+    @Html.ActionLink("Dodaj", "Create", "Songs")
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Musician.FullName)
+            </th>
+            <th>
+                <div>Akcje</div>
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (Song song in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => song.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => song.Genre.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => song.Musician.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Pokaż", "Show", "Songs", routeValues: new { id = song.Id }, new { style = "margin-right: 10px;" })
+                    @Html.ActionLink("Edytuj", "Edit", "Songs", routeValues: new { id = song.Id }, new { style = "margin-right: 10px;" })
+                    @Html.ActionLink("Usuń", "Delete", "Songs", routeValues: new { id = song.Id }, new { style = "margin-right: 10px;" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

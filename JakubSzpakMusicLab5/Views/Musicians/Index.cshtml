@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Musician>
+
+@{
+    ViewData["Title"] = "Lista muzyków";
+}
+
+<p>
+    @Html.ActionLink("Dodaj", "Create", "Musicians")
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearOfDeath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlaceOfOrigin)
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var musician in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => musician.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => musician.YearOfBirth)
+                </td>
+                <td>
+                    @if (!String.IsNullOrEmpty(musician.YearOfDeath))
+                    {
+                        @Html.DisplayFor(modelItem => musician.YearOfDeath)
+                    }
+                    else
+                    {
+                        <div style="font-weight: bold">-</div>
+                    }
+                </td>
+                <td>
+                    @(musician.PlaceOfOrigin.CityName + ", " + musician.PlaceOfOrigin.CountryName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

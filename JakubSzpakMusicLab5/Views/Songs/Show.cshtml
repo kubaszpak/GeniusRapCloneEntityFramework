@@ -1,0 +1,28 @@
+﻿@model Song
+
+@{
+    ViewData["Title"] = Model.Description;
+}
+
+<div>
+    <h2>
+        Tytuł: @Model.Description
+    </h2>
+    <h4>
+        Autor: @Model.Musician.FullName
+    </h4>
+    <h4>
+        Gatunek: @Model.Genre.FullName
+    </h4>
+    <h5>
+        @Model.Genre.CulturalOriginsDescription
+    </h5>
+    <div>
+        @Html.ActionLink("Edytuj", "Edit", "Songs", routeValues: new { id = Model.Id }, new { style = "margin-right: 10px;" })
+        @Html.ActionLink("Usuń", "Delete", "Songs", routeValues: new { id = Model.Id }, new { style = "margin-right: 10px;" })
+    </div>
+    <br />
+    <br />
+    <br />
+     @Html.Raw(Model.Lyrics)
+</div>
